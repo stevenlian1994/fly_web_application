@@ -1,0 +1,10 @@
+<div class="dashboard-body">
+
+  <h1>
+    Welcome to the Fly Web Application!
+  </h1>
+  
+  <ul *ngFor="let i of images">
+    <img src="http://localhost:9000/uploads/{{i.image_path}}">
+  </ul>
+</div>
