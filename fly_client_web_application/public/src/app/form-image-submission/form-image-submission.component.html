@@ -1,39 +1,13 @@
-<!-- <label>Upload your Image</label> -->
-
-<!-- <form method="post" enctype="multipart/form-data" action="/upload">
-  <input type="file" name="file">
-  <input type="submit" value="Submit">
-</form> -->
-
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-
-    <div>
-      <label for="name">
-        Name
-      </label>
-      <input id="name" type="text" formControlName="name">
-    </div>
-  
-    <div>
-      <label for="address">
-        Address
-      </label>
-      <input id="address" type="text" formControlName="address">
-    </div>
-  
-    <button class="button" type="submit">Purchase</button>
-  
-</form>
-
+<div class="my-container">
   <form [formGroup]="imageForm" (ngSubmit)="onSubmit2(imageForm)">
-      <div>
-          <label for="image">
-            Upload Image
-          </label>
-          <!-- <input id="image" type="file" formControlName="image"> -->
-          <input type="file" (change)="onFileChanged($event)">
-        </div>
-
-        <button class="button" type="submit">Submit Image</button>
-
-  </form>
+        <div>
+            <label for="image">
+              Upload Image
+            </label>
+            <input type="file" (change)="onFileChanged($event)">
+          </div>
+  
+          <button class="button" type="submit">Submit Image</button>
+  
+    </form>
+</div>

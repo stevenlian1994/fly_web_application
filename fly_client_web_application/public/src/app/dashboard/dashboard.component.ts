@@ -18,6 +18,12 @@ export class DashboardComponent implements OnInit {
   getImages(){
     this.imageService.getImages().subscribe(data=>{
       this.images = data['imageList'];
+      console.log('in here', this.images)
+    })
+  }
+  testing(){
+    this.imageService.callImageServer().subscribe(data=>{
+      console.log('got our data', data)
     })
   }
 }

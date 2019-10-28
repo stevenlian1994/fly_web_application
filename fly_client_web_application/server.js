@@ -22,11 +22,16 @@ app.get('/proxyToImages', function(req,res){
   })
 })
 
+// app.get('/callImageServer', function(req,res){
+//   console.log('yoyo')
+//   res.json({'key':'what'})
+// })
+
 app.post('/sendImage', function(req,res){
   console.log('inside server.js')
   console.log(req.body);
 })
 
 app.listen(7000, function(){
-  console.log("listening on port 7000")
+  console.log("ng server on port 7000")
 })

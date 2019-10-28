@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ImageService } from '../image.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form-image-submission',
@@ -13,6 +14,8 @@ export class FormImageSubmissionComponent implements OnInit {
   reader = new FileReader();
   selectedFile: File
   dataImage: any;
+  readerResult: string;
+  myVal = 5;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,26 +39,23 @@ export class FormImageSubmissionComponent implements OnInit {
     this.checkoutForm.reset();
   }
   onSubmit2(imageData) {
+    // asynchronous
     this.getBase64(this.selectedFile)
+    
   }
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0]
     console.log(this.selectedFile)
   }
-
+  // get base 64 and return as string...
    getBase64(file) {
+     var _this = this
     var reader = new FileReader();
     reader.readAsDataURL(file);
-    this.dataImage = reader.onload = function () {
-      console.log('reader result:', reader.result)
-      return reader.result
-    };
-    // this.imageService.sendImage('hi')
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
-    console.log('dataimage:', this.dataImage)
-
+    reader.onloadend = function(e) {
+      console.log("L: " + reader.result)
+      _this.imageService.sendImage(reader.result)
+    }
  }
 }
