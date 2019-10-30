@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormImageSubmissionComponent } from './form-image-submission/form-image-submission.component';
+import { FormVideoSubmissionComponent } from './form-video-submission/form-video-submission.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     FormImageSubmissionComponent,
+    FormVideoSubmissionComponent,
   ],
   imports: [
     BrowserModule,
