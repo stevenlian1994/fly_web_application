@@ -12,6 +12,11 @@ export class VideoService {
     // get videos
   }
 
-  
+  sendImage(image){
+    console.log('inside service', image, typeof(image))
+    this._httpClient.post('http://localhost:9000/api/upload', { 'key': image}).subscribe((data)=>{
+     console.log('in here', data)
+    })
+ }
 
 }
