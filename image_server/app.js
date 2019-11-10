@@ -2,8 +2,12 @@ const path = require("path");
 const fs = require("fs");
 var express = require('express')
 var app = express()
-app.use(express.json())
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
+app.use(express.json({ limit: '10mb' }))
+
+// app.use(bodyParser.json({ limit: '10mb' }));
+// app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
 
 const multer = require("multer");
 
@@ -73,6 +77,17 @@ app.get('/api/images', function(req, res){
     })
 })
 
+// endpoint to get all videos
+app.get('/api/videos', function(req, res){
+  connection.query(`SELECT * FROM videos`, function(err, results){
+    let imageList = []
+    for(let i = 0; i < results.length; i++){
+      imageList.push(results[i])
+    }
+    res.json({imageList})
+  })
+})
+
 app.post(
   "/api/upload",
   (req, res) => {
@@ -89,6 +104,35 @@ app.post(
     connection.query(`INSERT INTO images (image_folder, image_path) VALUES ('${folderName}', '${imageName}')`, function(err, results){
       console.log(results)
     })
+  }
+);
+
+
+app.post(
+  "/api/upload/video",
+  (req, res) => {
+    // handle mp4
+    var base64Data = req.body['key'].replace(/^data:video\/mp4;base64,/, "");
+    var folderName = "uploads"
+    var baseName = new Date().toString().replace(/[^\w]/g, '');
+    console.log('baseName:' + baseName)
+    let imageName = baseName+".mp4"
+    fs.writeFile("./"+ folderName+ "/"+ imageName, base64Data, 'base64', function(err) {
+      console.log(err);
+    });
+    
+    connection.query(`INSERT INTO videos (image_folder, video_path) VALUES ('${folderName}', '${imageName}')`, function(err, results){
+      console.log(results)
+    })
+  }
+);
+
+app.listen(9000, function(){
+    console.log("initiating image server on port 9000")
+})
+
+
+
     // if (path.extname(imageName).toLowerCase() === ".png" | path.extname(imageName).toLowerCase() === ".jpg") {
     //   fs.rename(tempPath, targetPath, err => {
     //     if (err) {
@@ -110,31 +154,3 @@ app.post(
     //       .end("Only .png files are allowed!");
     //   });
     // }
-  }
-);
-
-
-app.post(
-  "/api/upload/video",
-  (req, res) => {
-    // handle jpeg or png
-    console.log('made it into image server~~')
-    var base64Data = req.body['key'].replace(/^data:image\/mp4;base64,/, "");
-    var folderName = "uploads"
-    var baseName = new Date().toString().replace(/[^\w]/g, '');
-    console.log(baseName)
-    let imageName = baseName+".mp4"
-    fs.writeFile("./"+ folderName+ "/"+ imageName, base64Data, 'base64', function(err) {
-      console.log(err);
-    });
-    
-    connection.query(`INSERT INTO images (image_folder, image_path) VALUES ('${folderName}', '${imageName}')`, function(err, results){
-      console.log(results)
-    })
-  }
-);
-
-app.listen(9000, function(){
-    console.log("initiating image server on port 9000")
-})
-

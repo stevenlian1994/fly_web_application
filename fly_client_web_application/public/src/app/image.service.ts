@@ -10,7 +10,8 @@ export class ImageService {
    }
 
    getImages() {
-     return this._httpClient.get('http://localhost:9000/api/images')
+     return this._httpClient.get('http://localhost:9000/api/images'
+     )
    }
 
    sendImage(image){

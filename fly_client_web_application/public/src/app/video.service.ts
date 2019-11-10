@@ -10,6 +10,8 @@ export class VideoService {
 
   getVideos() {
     // get videos
+    console.log('in video service')
+    return this._httpClient.get('http://localhost:9000/api/videos')
   }
 
   sendImage(image){

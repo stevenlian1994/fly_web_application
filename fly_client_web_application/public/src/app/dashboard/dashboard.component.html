@@ -10,4 +10,14 @@
       </li>
     </ul>
   </div>
+  <p>bump</p>
+  <div class="video-body">
+    <ul>
+      <li *ngFor="let i of videos">
+          <video width="320" height="240" controls>
+            <source src="http://localhost:9000/api/image/{{i.video_path}}" type="video/mp4">
+          </video>
+      </li>
+    </ul>
+  </div>
 </div>
