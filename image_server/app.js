@@ -113,6 +113,27 @@ app.post(
   }
 );
 
+
+app.post(
+  "/api/upload/video",
+  (req, res) => {
+    // handle jpeg or png
+    console.log('made it into image server~~')
+    var base64Data = req.body['key'].replace(/^data:image\/mp4;base64,/, "");
+    var folderName = "uploads"
+    var baseName = new Date().toString().replace(/[^\w]/g, '');
+    console.log(baseName)
+    let imageName = baseName+".mp4"
+    fs.writeFile("./"+ folderName+ "/"+ imageName, base64Data, 'base64', function(err) {
+      console.log(err);
+    });
+    
+    connection.query(`INSERT INTO images (image_folder, image_path) VALUES ('${folderName}', '${imageName}')`, function(err, results){
+      console.log(results)
+    })
+  }
+);
+
 app.listen(9000, function(){
     console.log("initiating image server on port 9000")
 })

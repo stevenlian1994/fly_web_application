@@ -4,6 +4,7 @@ Enabling Multimedia Sharing
 
 #### Developer Notes
 1. Work on video upload APIs 
+  . http://localhost:9000/api/upload 413 (Payload Too Large)
 2. Start on Mobile Application
 3. Research CDN options
     

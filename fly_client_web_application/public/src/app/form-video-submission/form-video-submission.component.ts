@@ -36,7 +36,7 @@ export class FormVideoSubmissionComponent implements OnInit {
    reader.readAsDataURL(file);
    reader.onloadend = function(e) {
      console.log("L: " + reader.result)
-    //  _this.videoService.sendImage(reader.result)
+     _this.videoService.sendImage(reader.result)
    }
 }
 }
