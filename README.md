@@ -9,5 +9,6 @@ Enabling Multimedia Sharing
   . refactor code
   . autoplay feature + merge videos
 2. Start on Mobile Application
+  . Create Kotlin CRUD Proof of Concept
 3. Research CDN options
     
