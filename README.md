@@ -10,5 +10,7 @@ Enabling Multimedia Sharing
   . autoplay feature + merge videos
 2. Start on Mobile Application
   . Create Kotlin CRUD Proof of Concept
+    .use Gradle Build Tool
+    .use Kotlin
 3. Research CDN options
     
