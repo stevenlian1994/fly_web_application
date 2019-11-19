@@ -12,5 +12,6 @@ Enabling Multimedia Sharing
   . Create Kotlin CRUD Proof of Concept
     .use Gradle Build Tool
     .use Kotlin
+    .use Android Studio
 3. Research CDN options
     
